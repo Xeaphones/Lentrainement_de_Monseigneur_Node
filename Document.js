@@ -1,34 +1,19 @@
-function Sum(A,B) {
-    return (A+B);
-}
+let entreeStandard = process.stdin;
+entreeStandard.setEncoding("utf-8")
+console.log("Combien d'alumettes voulez vous enlever ?. \nDites \'exit\' pour quitter.");
 
-const ColorsToIndex = tableau => {
-    res = ""
-    for (index in tableau) {
-        res+= `La couleur à l'index ${index} est ${tableau[index]} \n`;
+let nbAlumette = 13
+entreeStandard.on("data", function(data) {
+    if (data === "exit\n" || data === "exit\r\n" ) {
+        console.log("Termination du mini-jeu, fermuture du programme.");
+        process.exit();
     }
-    return (res);
-}
-
-let tabCouleur = ["Bleu","Jaune","Vert","Jaune","Violet","Bleulone"]
-
-for(index in tabCouleur) {
-    switch(tabCouleur[index]) {
-        case "Bleu":
-            console.log(`La couleur à l'index ${index} est: Bleu`);
-            break;
-        case "Rouge":
-            console.log(`La couleur à l'index ${index} est: Rouge`);
-            break;
-        case "Vert":
-            console.log(`La couleur à l'index ${index} est: Vert`);
-            break;
-        case "Jaune":
-            console.log(`La couleur à l'index ${index} est: Jaune`);
-            break;
-        default:
-            console.log(`La couleur ${tabCouleur[index]} n'etait pas attendue`);
+    else if (data !== "\r\n" && data !== "\n") {
+        if((data != "1\n" && data != "1\r\n") && (data != "2\n" && data != "2\r\n") && (data != "3\n" && data != "3\r\n")) {
+            console.log("Vous n'avez pas choisi un nombre valide d'allumette à enlever. Tricheur.")
+        }
+        else{
+            console.log(`Tu as choisi d'enlever ${data} allumette(s)`)
+        }
     }
-}
-
-console.log(ColorsToIndex(["Bleu","Jaune","Vert","Jaune","Violet","Bleulone"]));
+});
